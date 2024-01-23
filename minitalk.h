@@ -6,7 +6,7 @@
 /*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 12:11:45 by zech-chi          #+#    #+#             */
-/*   Updated: 2024/01/23 12:55:39 by zech-chi         ###   ########.fr       */
+/*   Updated: 2024/01/23 12:59:44 by zech-chi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define MINITALK_H
 
 # include <unistd.h>
+# include <stdlib.h>
 # include <signal.h>
 
 void	ft_putchar(char c);
