@@ -6,7 +6,7 @@
 /*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 12:12:27 by zech-chi          #+#    #+#             */
-/*   Updated: 2024/01/23 12:53:11 by zech-chi         ###   ########.fr       */
+/*   Updated: 2024/01/23 13:15:22 by zech-chi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,5 +38,6 @@ int	main(int ac, char **av)
 
 	pid = ft_check_and_get_pid(ac, av);
 	kill(pid, SIGUSR1);
+	kill(pid, SIGUSR2);
 	return (0);
 }
