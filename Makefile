@@ -13,7 +13,7 @@ SRC = minitalk_utils.c
 OBJ = $(SRC:.c=.o)
 
 %.o: %.c minitalk.h
-	$(CC) $(CFLAGS) -o $^
+	$(CC) $(CFLAGS) $^ -o $@
 
 $(NAMEC): $(OBJ)
 	$(CC) $(CFLAGS) $^ client.c -o $@
