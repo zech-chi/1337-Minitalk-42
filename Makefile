@@ -25,6 +25,8 @@ all: $(NAMEC) $(NAMES)
 
 client: $(NAMEC)
 
+server: $(NAMES)
+
 clean:
 	$(RM) $(OBJ)
 
