@@ -6,11 +6,11 @@
 /*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 12:12:30 by zech-chi          #+#    #+#             */
-/*   Updated: 2024/01/24 18:10:24 by zech-chi         ###   ########.fr       */
+/*   Updated: 2024/01/24 18:47:17 by zech-chi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minitalk.h"
+#include "../minitalk.h"
 
 static void	ft_print_server_header(void)
 {
