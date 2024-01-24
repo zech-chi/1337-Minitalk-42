@@ -4,42 +4,42 @@ CFLAGS = -Wall -Wextra -Werror
 
 RM = rm -f
 
-NAMES = server
+SNAME = server
 
-NAMEC = client
-
-SRC = utils/minitalk_utils.c
-
-SC = mandatory/client.c
+CNAME = client
 
 SS = mandatory/server.c
 
-OBJ = $(SRC:.c=.o)
+SC = mandatory/client.c
+
+SUTILS = utils/minitalk_utils.c
+
+OS = $(SS:.c=.o)
 
 OC = $(SC:.c=.o)
 
-OS = $(SS:.c = .o)
+OUTILS = $(SUTILS:.c=.o)
+
+$(CNAME): $(OUTILS) $(OC)
+	$(CC) $(CFLAGS) $^ -o $@
+
+$(SNAME): $(OUTILS) $(OS)
+	$(CC) $(CFLAGS) $^ -o $@
 
 %.o: %.c minitalk.h
-	$(CC) $(CFLAGS) $^ -o $@
+	$(CC) $(CFLAGS) -c $< -o $@
 
-$(NAMES): $(OS) $(OBJ)
-	$(CC) $(CFLAGS) $^ -o $@
-
-$(NAMEC): $(OC) $(OBJ)
-	$(CC) $(CFLAGS) $^ -o $@
-
-all: $(NAMES) $(NAMEC)
+all: $(SNAME) $(CNAME)
 
 clean:
-	$(RM) $(OBJ)
+	$(RM) $(OUTILS)
 	$(RM) $(OS)
 	$(RM) $(OC)
 
 fclean: clean
-	$(RM) $(NAMES)
-	$(RM) $(NAMEC)
+	$(RM) $(SNAME)
+	$(RM) $(CNAME)
 
 re: all
 
-.PHONY: all clean fclean
+.PHONY: all clean fclean re
