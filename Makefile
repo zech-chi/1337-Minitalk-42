@@ -1,3 +1,5 @@
+
+
 CC = cc
 
 CFLAGS = -Wall -Wextra -Werror
@@ -20,16 +22,16 @@ OC = $(SC:.c=.o)
 
 OUTILS = $(SUTILS:.c=.o)
 
-$(CNAME): $(OUTILS) $(OC)
+all: $(SNAME) $(CNAME)
+
+$(CNAME): $(OC) $(OUTILS) 
 	$(CC) $(CFLAGS) $^ -o $@
 
-$(SNAME): $(OUTILS) $(OS)
+$(SNAME): $(OS) $(OUTILS) 
 	$(CC) $(CFLAGS) $^ -o $@
 
 %.o: %.c minitalk.h
 	$(CC) $(CFLAGS) -c $< -o $@
-
-all: $(SNAME) $(CNAME)
 
 clean:
 	$(RM) $(OUTILS)
