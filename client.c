@@ -6,7 +6,7 @@
 /*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 12:12:27 by zech-chi          #+#    #+#             */
-/*   Updated: 2024/01/23 18:40:55 by zech-chi         ###   ########.fr       */
+/*   Updated: 2024/01/24 17:58:29 by zech-chi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,14 +43,21 @@ static void	ft_send_byte(pid_t pid, unsigned char c)
 		j = 1 << i;
 		if (c & j)
 		{
-			ft_putchar('1');
-			kill(pid, SIGUSR2);
+			if (kill(pid, SIGUSR2) == -1)
+			{
+				ft_putstr_fd("Can't send the signal\n", 2);
+				exit(3);
+			}
 		}
 		else
 		{
-			ft_putchar('0');
-			kill(pid, SIGUSR1);
+			if (kill(pid, SIGUSR1) == -1)
+			{
+				ft_putstr_fd("Can't send the signal\n", 2);
+				exit(4);
+			}
 		}
+		usleep(1000);
 	}
 }
 

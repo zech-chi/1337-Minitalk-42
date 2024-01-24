@@ -6,7 +6,7 @@
 /*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 12:12:30 by zech-chi          #+#    #+#             */
-/*   Updated: 2024/01/23 19:21:14 by zech-chi         ###   ########.fr       */
+/*   Updated: 2024/01/24 17:45:00 by zech-chi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,26 +32,45 @@ static void	ft_print_server_header()
 	ft_putstr_fd("\033[0m", 1);
 }
 
-void	ft_handle_0(int sig)
+void	ft_handler(int sig, siginfo_t *info, void *ucontext)
 {
-	sig = sig -1 + 1;
-	ft_putchar('0');
-}
+	static int	count;
+	static int	c;
 
-void	ft_handle_1(int sig)
-{
-	sig = sig -1 + 1;
-	ft_putchar('1');
+	if (sig == SIGUSR1)
+	{
+		c *= 2;
+		count++;
+	}
+	else if (sig == SIGUSR2)
+	{
+		c *= 2;
+		c += 1;
+		count++;
+	}
+	if (count == 8)
+	{
+		ft_putchar(c);
+		c = 0;
+		count = 0;
+	}
+	usleep(500);
+	(void)(info);
+	(void)(ucontext);
 }
 
 int	main(void)
 {
 	ft_print_server_header();
+	struct sigaction sa;
+	sa.sa_flags = 0;
+	sa.sa_sigaction = ft_handler;
+
+	sigaction(SIGUSR1, &sa, NULL);
+	sigaction(SIGUSR2, &sa, NULL);
 	while (1)
 	{
-		signal(SIGUSR1, ft_handle_0);
-		signal(SIGUSR2, ft_handle_1);
-		usleep(400);
+		sleep(1);
 	}
 	return (0);
 }

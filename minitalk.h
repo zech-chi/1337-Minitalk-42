@@ -6,7 +6,7 @@
 /*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 12:11:45 by zech-chi          #+#    #+#             */
-/*   Updated: 2024/01/23 12:59:44 by zech-chi         ###   ########.fr       */
+/*   Updated: 2024/01/24 14:46:47 by zech-chi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include <signal.h>
+# include <stdio.h>
 
 void	ft_putchar(char c);
 void	ft_putnbr(long long n);
