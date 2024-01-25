@@ -6,7 +6,7 @@
 /*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 12:12:30 by zech-chi          #+#    #+#             */
-/*   Updated: 2024/01/24 18:47:17 by zech-chi         ###   ########.fr       */
+/*   Updated: 2024/01/25 18:08:52 by zech-chi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,6 @@ static void	ft_handler(int sig, siginfo_t *info, void *ucontext)
 		c = 0;
 		count = 0;
 	}
-	usleep(500);
 	(void)(info);
 	(void)(ucontext);
 }
@@ -69,8 +68,6 @@ int	main(void)
 	sigaction(SIGUSR1, &sa, NULL);
 	sigaction(SIGUSR2, &sa, NULL);
 	while (1)
-	{
-		sleep(1);
-	}
+		usleep(100);
 	return (0);
 }
