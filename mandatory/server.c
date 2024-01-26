@@ -6,7 +6,7 @@
 /*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 12:12:30 by zech-chi          #+#    #+#             */
-/*   Updated: 2024/01/25 21:11:44 by zech-chi         ###   ########.fr       */
+/*   Updated: 2024/01/26 18:13:38 by zech-chi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,6 @@ int	main(void)
 	sigaction(SIGUSR1, &sa, NULL);
 	sigaction(SIGUSR2, &sa, NULL);
 	while (1)
-		usleep(100);
+		pause();
 	return (0);
 }

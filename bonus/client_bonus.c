@@ -6,7 +6,7 @@
 /*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 19:39:12 by zech-chi          #+#    #+#             */
-/*   Updated: 2024/01/25 20:09:05 by zech-chi         ###   ########.fr       */
+/*   Updated: 2024/01/26 18:34:25 by zech-chi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ static void	ft_send_byte(pid_t pid, unsigned char c)
 				exit(2);
 			}
 		}
-		usleep(50);
+		usleep(400);
 	}
 }
 
