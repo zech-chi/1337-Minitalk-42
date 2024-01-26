@@ -6,7 +6,7 @@
 /*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 19:39:12 by zech-chi          #+#    #+#             */
-/*   Updated: 2024/01/24 19:39:37 by zech-chi         ###   ########.fr       */
+/*   Updated: 2024/01/25 20:09:05 by zech-chi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static void	ft_send_byte(pid_t pid, unsigned char c)
 			if (kill(pid, SIGUSR2) == -1)
 			{
 				ft_putstr_fd("Can't send the signal\n", 2);
-				exit(3);
+				exit(1);
 			}
 		}
 		else
@@ -34,10 +34,18 @@ static void	ft_send_byte(pid_t pid, unsigned char c)
 			if (kill(pid, SIGUSR1) == -1)
 			{
 				ft_putstr_fd("Can't send the signal\n", 2);
-				exit(4);
+				exit(2);
 			}
 		}
-		usleep(1000);
+		usleep(50);
+	}
+}
+
+static void	ft_handler2(int sig)
+{
+	if (sig == SIGUSR1)
+	{
+		ft_putstr_fd("the message was sent successfully\n", 1);
 	}
 }
 
@@ -56,5 +64,7 @@ int	main(int ac, char **av)
 	i = 0;
 	while (av[2][i])
 		ft_send_byte(pid, av[2][i++]);
+	signal(SIGUSR1, ft_handler2);
+	ft_send_byte(pid, 0);
 	return (0);
 }

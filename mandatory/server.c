@@ -6,7 +6,7 @@
 /*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 12:12:30 by zech-chi          #+#    #+#             */
-/*   Updated: 2024/01/25 18:08:52 by zech-chi         ###   ########.fr       */
+/*   Updated: 2024/01/25 21:11:44 by zech-chi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,18 +34,22 @@ static void	ft_print_server_header(void)
 
 static void	ft_handler(int sig, siginfo_t *info, void *ucontext)
 {
-	static int	count;
-	static int	c;
+	static int		count;
+	static int		c;
+	static pid_t	client_pid;
 
-	if (sig == SIGUSR1)
+	if (client_pid == 0)
+		client_pid = info->si_pid;
+	else if (client_pid != info->si_pid)
 	{
-		c *= 2;
-		count++;
+		c = 0;
+		count = 0;
+		client_pid = info->si_pid;
 	}
-	else if (sig == SIGUSR2)
+	if (sig == SIGUSR1 || sig == SIGUSR2)
 	{
 		c *= 2;
-		c += 1;
+		c += 1 * (sig == SIGUSR2);
 		count++;
 	}
 	if (count == 8)
@@ -54,7 +58,6 @@ static void	ft_handler(int sig, siginfo_t *info, void *ucontext)
 		c = 0;
 		count = 0;
 	}
-	(void)(info);
 	(void)(ucontext);
 }
 
@@ -63,7 +66,7 @@ int	main(void)
 	struct sigaction	sa;
 
 	ft_print_server_header();
-	sa.sa_flags = 0;
+	sa.sa_flags = SA_SIGINFO;
 	sa.sa_sigaction = ft_handler;
 	sigaction(SIGUSR1, &sa, NULL);
 	sigaction(SIGUSR2, &sa, NULL);
