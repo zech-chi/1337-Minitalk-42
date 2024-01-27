@@ -6,7 +6,7 @@
 /*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 19:39:12 by zech-chi          #+#    #+#             */
-/*   Updated: 2024/01/26 18:34:25 by zech-chi         ###   ########.fr       */
+/*   Updated: 2024/01/27 15:43:14 by zech-chi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ int	main(int ac, char **av)
 		return (ft_putstr_fd("The client takes two parameters\n", 2), 0);
 	something_wrong = 0;
 	pid = ft_atoi_plus(av[1], &something_wrong);
-	if (something_wrong || pid < 0)
+	if (something_wrong || pid <= 0)
 		return (ft_putstr_fd("Invalid server PID.\n", 2), 0);
 	i = 0;
 	while (av[2][i])
