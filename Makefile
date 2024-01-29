@@ -64,6 +64,6 @@ fclean: clean
 	$(RM) $(SBNAME)
 	$(RM) $(CBNAME)
 
-re: all
+re: fclean all
 
 .PHONY: all clean fclean re bonus
