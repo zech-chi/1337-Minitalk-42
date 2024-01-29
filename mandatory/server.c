@@ -6,7 +6,7 @@
 /*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 12:12:30 by zech-chi          #+#    #+#             */
-/*   Updated: 2024/01/26 18:13:38 by zech-chi         ###   ########.fr       */
+/*   Updated: 2024/01/27 16:24:59 by zech-chi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,8 +68,16 @@ int	main(void)
 	ft_print_server_header();
 	sa.sa_flags = SA_SIGINFO;
 	sa.sa_sigaction = ft_handler;
-	sigaction(SIGUSR1, &sa, NULL);
-	sigaction(SIGUSR2, &sa, NULL);
+	if (sigaction(SIGUSR1, &sa, NULL) == -1)
+	{
+		ft_putstr_fd("something went wrong\n", 2);
+		exit(4);
+	}
+	if (sigaction(SIGUSR2, &sa, NULL) == -1)
+	{
+		ft_putstr_fd("something went wrong\n", 2);
+		exit(5);
+	}
 	while (1)
 		pause();
 	return (0);
